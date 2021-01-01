@@ -18,10 +18,10 @@
         }
     },
     "require": {
-        "php": ">=5.5.0",
-        "consolidation/robo": "~1"
+        "php": ">=7.3",
+        "consolidation/robo": "^2.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.4"
+        "phpunit/phpunit": "^9.5"
     }
 }

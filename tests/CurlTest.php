@@ -1,19 +1,21 @@
 <?php
 
+use EauDeWeb\Robo\Task\Curl\loadTasks;
 use League\Container\ContainerAwareInterface;
 use League\Container\ContainerAwareTrait;
+use PHPUnit\Framework\TestCase;
 use Robo\Robo;
 use Robo\TaskAccessor;
 use Symfony\Component\Console\Output\NullOutput;
 
-class CurlTest extends \PHPUnit_Framework_TestCase implements ContainerAwareInterface {
+class CurlTest extends TestCase implements ContainerAwareInterface {
 
-	use \EauDeWeb\Robo\Task\Curl\loadTasks;
+	use loadTasks;
 	use TaskAccessor;
 	use ContainerAwareTrait;
 
 	// Set up the Robo container so that we can create tasks in our tests.
-	public function setUp() {
+	public function setUp() : void {
 		$container = Robo::createDefaultContainer(null, new NullOutput());
 		$this->setContainer($container);
 	}

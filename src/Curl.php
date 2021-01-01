@@ -30,7 +30,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 * @param string $url
 	 *   Request URL.
 	 */
-	public function __construct($url) {
+	public function __construct(string $url) {
 		$this->url = $url;
 		$this->command = 'curl';
 	}
@@ -40,7 +40,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 *
 	 * @return Curl
 	 */
-	public function failOnHttpError() {
+	public function failOnHttpError() : Curl {
 		$this->option('-f');
 		return $this;
 	}
@@ -50,7 +50,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 *
 	 * @return Curl
 	 */
-	public function followRedirects() {
+	public function followRedirects() : Curl {
 		$this->option('-L');
 		return $this;
 	}
@@ -60,7 +60,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 *
 	 * @return Curl
 	 */
-	public function locationTrusted() {
+	public function locationTrusted() : Curl {
 		$this->option('--location-trusted');
 		return $this;
 	}
@@ -75,7 +75,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 *
 	 * @return Curl
 	 */
-	public function basicAuth($username, $password) {
+	public function basicAuth(string $username, string $password) : Curl {
 		$this->option('-u', $username . ':' . $password);
 		return $this;
 	}
@@ -88,7 +88,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 *
 	 * @return Curl
 	 */
-	public function output($file) {
+	public function output(string $file) : Curl {
 		$this->option('-o', $file);
 		return $this;
 	}
@@ -101,7 +101,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 *
 	 * @return Curl
 	 */
-	public function header($header) {
+	public function header(string $header) : Curl {
 		$this->option('-H', $header);
 		return $this;
 	}
@@ -109,7 +109,7 @@ class Curl extends BaseTask implements CommandInterface {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getCommand() {
+	public function getCommand() : string {
 		$this->rawArg($this->url);
 		return $this->command . $this->arguments;
 	}
@@ -117,7 +117,7 @@ class Curl extends BaseTask implements CommandInterface {
 	/**
 	 * @return Result
 	 */
-	public function run() {
+	public function run() : Result {
 		$command = $this->getCommand();
 		return $this->executeCommand($command);
 	}
