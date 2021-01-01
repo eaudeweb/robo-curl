@@ -1,11 +1,14 @@
-<?php
+<?php /** @noinspection PhpUnused */
+
 /**
  * @file Curl.php
  */
 
 namespace EauDeWeb\Robo\Task\Curl;
 
+use Robo\Common\ExecOneCommand;
 use Robo\Contract\CommandInterface;
+use Robo\Result;
 use Robo\Task\BaseTask;
 
 /**
@@ -15,7 +18,7 @@ use Robo\Task\BaseTask;
  */
 class Curl extends BaseTask implements CommandInterface {
 
-	use \Robo\Common\ExecOneCommand;
+	use ExecOneCommand;
 
 	protected $command;
 
@@ -35,7 +38,7 @@ class Curl extends BaseTask implements CommandInterface {
 	/**
 	 * Process exits with error if HTTP error occurs. Useful for scripting.
 	 *
-	 * @return \EauDeWeb\Robo\Task\Curl\Curl
+	 * @return Curl
 	 */
 	public function failOnHttpError() {
 		$this->option('-f');
@@ -45,7 +48,7 @@ class Curl extends BaseTask implements CommandInterface {
 	/**
 	 * Follow redirects.
 	 *
-	 * @return \EauDeWeb\Robo\Task\Curl\Curl
+	 * @return Curl
 	 */
 	public function followRedirects() {
 		$this->option('-L');
@@ -55,7 +58,7 @@ class Curl extends BaseTask implements CommandInterface {
 	/**
 	 * Accept redirects to different domains (e.g. example.com => www.example.com).
 	 *
-	 * @return \EauDeWeb\Robo\Task\Curl\Curl
+	 * @return Curl
 	 */
 	public function locationTrusted() {
 		$this->option('--location-trusted');
@@ -70,7 +73,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 * @param $password
 	 *   Password in clear.
 	 *
-	 * @return \EauDeWeb\Robo\Task\Curl\Curl
+	 * @return Curl
 	 */
 	public function basicAuth($username, $password) {
 		$this->option('-u', $username . ':' . $password);
@@ -83,7 +86,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 * @param string $file
 	 *   Output file.
 	 *
-	 * @return \EauDeWeb\Robo\Task\Curl\Curl
+	 * @return Curl
 	 */
 	public function output($file) {
 		$this->option('-o', $file);
@@ -96,7 +99,7 @@ class Curl extends BaseTask implements CommandInterface {
 	 * @param string $header
 	 *   HTTP header (i.e. Accept: application/javascript')
 	 *
-	 * @return \EauDeWeb\Robo\Task\Curl\Curl
+	 * @return Curl
 	 */
 	public function header($header) {
 		$this->option('-H', $header);
@@ -112,7 +115,7 @@ class Curl extends BaseTask implements CommandInterface {
 	}
 
 	/**
-	 * @return \Robo\Result
+	 * @return Result
 	 */
 	public function run() {
 		$command = $this->getCommand();
