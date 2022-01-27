@@ -81,19 +81,6 @@ class Curl extends BaseTask implements CommandInterface {
 	}
 
 	/**
-	 * Write output to file.
-	 *
-	 * @param string $file
-	 *   Output file.
-	 *
-	 * @return Curl
-	 */
-	public function output(string $file) : Curl {
-		$this->option('-o', $file);
-		return $this;
-	}
-
-	/**
 	 * Add HTTP header to the request.
 	 *
 	 * @param string $header

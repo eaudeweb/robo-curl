@@ -52,7 +52,7 @@ class CurlTest extends TestCase implements ContainerAwareInterface {
 	}
 
 	public function testOutput() {
-		$command = $this->taskCurl('url')->output('file.html')->getCommand();
+		$command = $this->taskCurl('url')->option('-o', 'file.html')->getCommand();
 		$this->assertEquals("curl -o file.html url", $command);
 	}
 
